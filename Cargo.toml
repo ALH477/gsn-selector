@@ -1,0 +1,33 @@
+[package]
+name = "gsn-selector"
+version = "0.2.0"
+edition = "2021"
+authors = ["DeMoD LLC"]
+description = "Game server orchestration with DCF integration"
+license = "Proprietary"
+
+[dependencies]
+# Web framework
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+
+# Docker API
+bollard = "0.16"
+
+# HTTP client for DCF-ID
+reqwest = { version = "0.11", default-features = false, features = ["json", "rustls-tls"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
